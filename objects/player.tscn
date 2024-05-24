@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxr38cdbtf8fx"]
+
+[ext_resource type="Script" path="res://Levels/player.gd" id="1_5ykl5"]
+[ext_resource type="Texture2D" uid="uid://byhehlxtnnuny" path="res://resources/monochrome_tilemap_transparent.png" id="2_jhovd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lado"]
+atlas = ExtResource("2_jhovd")
+region = Rect2(0, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_314li"]
+atlas = ExtResource("2_jhovd")
+region = Rect2(68, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxj24"]
+atlas = ExtResource("2_jhovd")
+region = Rect2(17, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fksqd"]
+atlas = ExtResource("2_jhovd")
+region = Rect2(34, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0g4q"]
+atlas = ExtResource("2_jhovd")
+region = Rect2(51, 204, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qro2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lado")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_314li")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxj24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fksqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0g4q")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvy6e"]
+radius = 4.0
+height = 8.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_5ykl5")
+
+[node name="sprte" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qro2t")
+animation = &"jump"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_tvy6e")
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_bottom = 650
+position_smoothing_enabled = true
+position_smoothing_speed = 18.0

@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnsmsdc6g3xvt"]
+
+[ext_resource type="Texture2D" uid="uid://byhehlxtnnuny" path="res://resources/monochrome_tilemap_transparent.png" id="1_vdlm3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn3f7"]
+atlas = ExtResource("1_vdlm3")
+region = Rect2(272, 34, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmr85"]
+atlas = ExtResource("1_vdlm3")
+region = Rect2(306, 34, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qbox"]
+atlas = ExtResource("1_vdlm3")
+region = Rect2(323, 34, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_30wty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn3f7")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn3f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmr85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qbox")
+}],
+"loop": true,
+"name": &"open",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqbsg"]
+size = Vector2(14, 18)
+
+[node name="door" type="Area2D"]
+position = Vector2(40, 5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_30wty")
+animation = &"open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_nqbsg")
